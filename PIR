@@ -1,23 +1,28 @@
+
 import RPi.GPIO as GPIO
+
 import time
 
-MOTION=20
+
+
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(MOTION,GPIO.IN)
 
-def detected():
-	print('O')
-	sys.quit
-def no_detected():
-	print('X')
 
-try:
-	while True:
-		if GPIO.input(MOTION) == GPIO:
-			detected()
-		else:
-			no_detected()
 
-except KeyboardInterrupt:
-	pass
-GPIO.cleanup
+pirPin = 7
+
+GPIO.setup(pirPin, GPIO.IN, GPIO.PUD_UP)
+
+
+
+while True:
+
+    if GPIO.input(pirPin) == GPIO.LOW:
+
+        print "Motion detected!"
+
+    else:
+
+        print "No motion"
+
+    time.sleep(0.2)
