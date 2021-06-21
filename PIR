@@ -3,21 +3,21 @@ import time
 
 MOTION=20
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(MOTION, GPIO.IN)
+GPIO.setup(MOTION,GPIO.IN)
 
 def detected():
-	print("o")
-	sys.exit
-
+	print('O')
+	sys.quit
 def no_detected():
-	print("x")
+	print('X')
 
 try:
 	while True:
-		if GPIO.input(MOTION) == GPIO
+		if GPIO.input(MOTION) == GPIO:
 			detected()
-
 		else:
 			no_detected()
 
+except KeyboardInterrupt:
+	pass
 GPIO.cleanup
