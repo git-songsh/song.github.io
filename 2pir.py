@@ -1,6 +1,33 @@
+import RPi.GPIO as GPIO
 import time
-#import configparser
+import time
 import urllib
+
+GPIO.setmode(GPIO.BCM)
+
+pirPin = 7
+
+GPIO.setup(pirPin, GPIO.IN, GPIO.PUD_UP)
+
+detectednum = 0
+
+while True:
+
+    if GPIO.input(pirPin) == GPIO.LOW:
+
+        print "Motion detected!"
+        detectednum += 1
+        if (detectednum >= 10) :
+            break
+
+    else:
+
+        print "No motion"
+
+    time.sleep(0.2)
+
+
+
 
 while True:
     
