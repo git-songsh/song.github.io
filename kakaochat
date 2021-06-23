@@ -4,7 +4,7 @@ import urllib
 
 while True:
     
-    if (datetime.now().hour > AlertTime) :
+    if (detectednunber >= 10) :
  
         #알리기
         #Config = configparser.ConfigParser()
@@ -13,11 +13,11 @@ while True:
         #Config.read('info.conf')
         #Config = Config['MAIN']
 
-        id = '' #여기에 본인 카톡 로그인 이메일
-        pw = '' #여기에 본인 비밀번호
+        id = 'songsoo0037@naver.com' #여기에 본인 카톡 로그인 이메일
+        pw = 'kakaoss00' #여기에 본인 비밀번호
 
         KaKaoURL = 'https://accounts.kakao.com/login/kakaoforbusiness?continue=https://center-pf.kakao.com/'
-        ChatRoom = '' #여기에 본인이 만든 카톡 채널 주소
+        ChatRoom = 'http://pf.kakao.com/_dLeCs' #카톡 채널 주소
         options = webdriver.ChromeOptions()
  
  
