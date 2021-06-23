@@ -4,7 +4,7 @@ import urllib
 
 while True:
     
-    if (detectednunber >= 10) :
+    if (detectednum >= 10) :
     
         id = 'songsoo0037@naver.com' #카카오톡 아이디
         pw = 'kakaoss00' #카카오톡 비밀번호
