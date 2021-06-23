@@ -15,14 +15,14 @@ while True:
 
     if GPIO.input(pirPin) == GPIO.LOW:
 
-        print "Motion detected!"
+        print ("Motion detected!")
         detectednum += 1
         if (detectednum >= 10) :
             break
 
     else:
 
-        print "No motion"
+        print ("No motion")
 
     time.sleep(0.2)
 
