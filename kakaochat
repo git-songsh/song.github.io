@@ -5,19 +5,12 @@ import urllib
 while True:
     
     if (detectednunber >= 10) :
- 
-        #알리기
-        #Config = configparser.ConfigParser()
- 
-        #카카오 아이디, 비밀번호 불러옴
-        #Config.read('info.conf')
-        #Config = Config['MAIN']
-
-        id = 'songsoo0037@naver.com' #여기에 본인 카톡 로그인 이메일
-        pw = 'kakaoss00' #여기에 본인 비밀번호
+    
+        id = 'songsoo0037@naver.com' #카카오톡 아이디
+        pw = 'kakaoss00' #카카오톡 비밀번호
 
         KaKaoURL = 'https://accounts.kakao.com/login/kakaoforbusiness?continue=https://center-pf.kakao.com/'
-        ChatRoom = 'http://pf.kakao.com/_dLeCs' #카톡 채널 주소
+        ChatRoom = 'http://pf.kakao.com/_dLeCs' #카카오톡챗봇 주소
         options = webdriver.ChromeOptions()
  
  
