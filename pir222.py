@@ -72,6 +72,10 @@ while True:
         time.sleep(3)
         driver.find_element_by_xpath('//*[@id="kakaoWrap"]/div[1]/div[2]/div/div[2]/div[2]/form/fieldset/button').click()
         time.sleep(3)
+        
+        driver.find_element_by_css_selector("input[type='file']").send_keys("~") #영상전송
+        time.sleep(5)
+        
         driver.quit()
         
         time.sleep(60)
