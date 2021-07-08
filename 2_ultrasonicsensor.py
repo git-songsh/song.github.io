@@ -8,11 +8,8 @@ GPIO.setmode(GPIO.BCM) # 핀을 GPIO 핀 번호 기준으로 부름
 TRIG = 18 # TRIG 핀을 BCM 18번에 연결
 ECHO = 24 # ECHO 핀을 BCM 24번에 연결
 
-
 GPIO.setup(TRIG, GPIO.OUT) # 핀의 모드를 설정합니다.
 GPIO.setup(ECHO, GPIO.IN) # 핀의 모드를 설정합니다.
-GPIO.setup(17, GPIO.OUT) #  led 핀 모드 설정
-
 
 try: # 키보드 인터럽트 예외처리
   while True :
@@ -32,15 +29,8 @@ try: # 키보드 인터럽트 예외처리
  
      timeDelta = stopTime - startTime # 걸린 시간 측정
      distance = (timeDelta * 34400) / 2 # 시간을 거리값으로 환산
-     
-     if distance < 10 : #물체와의 거리가 10cm이하일 경우 led on
-         GPIO.output(17, GPIO.HIGH)
-         print('led on')
-         time.sleep(1)
-     else :
-         GPIO.output(17, GPIO.LOW)  
-  
-     print(distance) #물체와의 거리 출력 (cm단위)
+    
+     print("distance " + str(distance) + "cm") #물체와의 거리 출력 (cm단위)
      time.sleep(1)
 
 except KeyboardInterrupt:
