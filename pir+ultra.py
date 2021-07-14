@@ -1,11 +1,13 @@
 import RPi.GPIO as GPIO # GPIO를 이용하기 위한 라이브러리 불러오기
 import time # time 함수 사용을 위한 라이브러리 불러오기
-from __future__ import print_function
+
+GPIO.cleanup()
 
 GPIO.setmode(GPIO.BCM) # 핀을 GPIO 핀 번호 기준으로 부름
 
 TRIG = 18 # TRIG 핀을 BCM 18번에 연결
 ECHO = 24 # ECHO 핀을 BCM 24번에 연결
+
 GPIO.setup(TRIG, GPIO.OUT) # 핀의 모드를 설정합니다.
 GPIO.setup(ECHO, GPIO.IN) # 핀의 모드를 설정합니다.
 
@@ -13,14 +15,14 @@ PIR = 7
 GPIO.setup(PIR, GPIO.IN, GPIO.PUD_UP)
 
 def measure():
-    GPIO.output(GPIO_TRIGGER, True)
+    GPIO.output(TRIG, True)
     time.sleep(0.00001)
-    GPIO.output(GPIO_TRIGGER, False)
+    GPIO.output(TRIG, False)
     start = time.time()
     
-    while GPIO.input(GPIO_ECHO) == 0:
+    while GPIO.input(ECHO) == 0:
         start = time.time()
-    while GPIO.input(GPIO_ECHO) == 1:
+    while GPIO.input(ECHO) == 1:
         stop = time.time()
     
     elapsed = stop - start
@@ -55,9 +57,8 @@ def measure_average():
     return distance
 
 def pirmeasure():
-    
-    while True:
-        if GPIO.input(pirPin) == GPIO.LOW:
+        while True:
+        if GPIO.input(PIR) == GPIO.LOW:
             detectednum += 1
             print ("Motion detected! "+str(detectednum))
             if (detectednum >= 10) :
