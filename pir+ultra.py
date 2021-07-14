@@ -121,10 +121,9 @@ while True:
             driver.quit()
 
             time.sleep(60)
-            break
+            a = 0
     else:
         a = 0
-        continue
     
 
         
