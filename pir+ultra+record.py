@@ -1,5 +1,8 @@
+from selenium import webdriver
 import RPi.GPIO as GPIO # GPIO를 이용하기 위한 라이브러리 불러오기
 import time # time 함수 사용을 위한 라이브러리 불러오기
+import picamera
+import datetime
 
 GPIO.cleanup()
 
@@ -73,6 +76,16 @@ def pirmeasure():
 
     return detectednum
 
+
+def record():
+  with picamera.PiCamera() as camera:
+    camera.resolution = (640, 480)
+    now = datetime.datetime.now()
+    filename = now.strftime('%Y-%m-%d %H:%M:%S')
+    camera.start_recording(output = filename + '.h264') #h.264 코덱
+    camera.wait_recording(5)
+    camera.stop_recording()
+
 def login():
     id = '~' #카카오톡 아이디
     pw = '~' #카카오톡 비밀번호
@@ -112,6 +125,7 @@ while True:
         a = a+1
         if (a >= 10) : 
             pirmeasure()
+            #record()
             login()
             
             #글 작성
