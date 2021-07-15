@@ -50,9 +50,11 @@ def measure_average():
     distance9 = measure()
     time.sleep(1)
     distance10 = measure()
-  
+
     distance = ( distance1 + distance2 + distance3 + distance4 + distance5 + distance6 + distance7 + distance8 + distance9 + distance10 ) / 10
     #정밀도를 높이기 위해 1초마다 거리를 측정하여 10초동안의 평균거리 계산
+    
+    print(str(distance))
     
     return distance
 
@@ -71,7 +73,8 @@ def pirmeasure():
 
     return detectednum
                                         
-
+a = 0 
+    
 while True:
     
     distance = measure_average()
