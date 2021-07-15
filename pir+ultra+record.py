@@ -60,7 +60,7 @@ def measure_average():
     return distance
 
 def pirmeasure():
-        while True:
+    while True:
         if GPIO.input(PIR) == GPIO.LOW:
             detectednum += 1
             print ("Motion detected! "+str(detectednum))
