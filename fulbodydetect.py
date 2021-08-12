@@ -35,7 +35,11 @@ while(True):
 
     if cv2.waitKey(1) != 255:
         break;
-
+"""	
+    if len(faces) == 1:
+	facefound += 1
+"""#이부분수정	
+	
 #close the window
 #윈도우 종료
 cap.release()
