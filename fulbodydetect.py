@@ -1,3 +1,4 @@
+'''
 import cv2
 
 #괄호안에 파일명을 쓰면 파일이 로드됌
@@ -44,3 +45,60 @@ while(True):
 #윈도우 종료
 cap.release()
 cv2.destroyWindow('Face')
+
+'''
+
+from picamera.array import PiRGBArray
+from picamera import PiCamera
+import time
+import cv2
+
+def detect(img, cascade):
+    rects = fullbody_cascade.detectMultiScale(img, scaleFactor=1.3, minNeighbors=4, minSize=(30, 30))
+                                            #  flags=cv2.CASCADE_SCALE_IMAGE
+    if len(rects) == 0:
+        return []
+    rects[:,2:] += rects[:,:2]
+    return rects
+
+def draw_rects(img, rects, color):
+    for x1, y1, x2, y2 in rects:
+        cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
+
+# initialize the camera and grab a reference to the raw camera capture
+camera = PiCamera()
+camera.resolution = (640, 480)
+camera.framerate = 32
+rawCapture = PiRGBArray(camera, size=(640, 480))
+
+fullbody_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+
+humanfound = 0
+# allow the camera to warmup
+time.sleep(0.1)
+
+while (True):
+    # capture frames from the camera
+    for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
+
+        # grab the raw NumPy array representing the image, then initialize the timestamp
+
+        # and occupied/unoccupied text
+        img = frame.array
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        gray = cv2.equalizeHist(gray)
+        rects = detect(gray, fullbody_cascade)
+        vis = img.copy()
+        draw_rects(vis, rects, (0, 255, 0))
+
+        # show the frame
+        cv2.imshow("Frame", vis)
+        key = cv2.waitKey(1) & 0xFF
+
+        if len(rects)>0:
+            humanfound += 1
+
+        # clear the stream in preparation for the next frame
+        rawCapture.truncate(0)
+
+        print(str(humanfound))
