@@ -32,7 +32,7 @@ flag = 0
 humanfound = 0 
 cap = cv2.VideoCapture(0)
 fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-out = cv2.VideoWriter('ss.avi', fourcc, 25.0, (640, 480))
+out = cv2.VideoWriter('qwer.avi', fourcc, 25.0, (640, 480))
 
 while (True):
     # 임의 숫자 / 사람 감지 횟수가 일정 횟수를 증가하면 다음 단계 진행 
